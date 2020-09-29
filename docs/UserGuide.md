@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+UniSave is a **desktop app for managing expenses, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, UniSave can get your financial management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `UniSave.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your UniSave.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +24,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all expenses.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`add a/50 c/ENTERTAINMENT d/2020-09-11 D/yayymovie!` : Adds an expense 50$ categorised as `ENTERTAINMENT` on 11 Sept, 2020 with `yayymovie!` description.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete`**`1` : Deletes the first expense shown in the expense list.
 
    * **`exit`** : Exits the app.
 
@@ -45,102 +43,118 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add a/AMOUNT`, `AMOUNT` is a parameter which can be used as `add a/100`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g `add a/AMOUNT [D/DESCRIPTION]` can be used as `add a/100 D/movie!!` or as `add a/100`.
 
 </div>
 
-### Viewing help : `help`
+### Adding an expense: `add`
 
-Shows a message explaning how to access the help page.
+Adds an expense to a category.  Must specify category when adding the expense.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: ` add a/AMOUNT c/CATEGORY d/DATE [D/DESCRIPTION]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A date should be in the form of yyyy-mm-dd
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Description for the expense is optional.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The sample categories are FOODBEVERAGE, SHOPPING, ENTERTAINMENT. They can be added individually.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add a/100 c/FOODBEVERAGE d/2020-09-12`
+* `add a/50 c/ENTERTAINMENT d/2020-09-11 D/yayymovie!`
 
-### Listing all persons : `list`
+### Listing all expenses : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all expenses.
 
-Format: `list`
+Format: `list [c/CATEGORY]`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Category item is optional for showing all expenses in the specific category.
+</div>
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `list`: list all the expenses in all the categories.
+* `list c/FOODBEVERAGE`: list all the expenses in the food beverage category.
 
-### Locating persons by name: `find`
+### Deleting an expense: `delete`
 
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Deletes the specified expense from the expense list.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the expense at the specified `INDEX`.
+* The index refers to the index number shown in the expense list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd expense in the expense list.
 
-### Clearing all entries : `clear`
+### View an expense : `view`
 
-Clears all entries from the address book.
+View an expense in the expense list.
 
-Format: `clear`
+Format: `view INDEX`
+
+
+View the expense at the specified INDEX.
+
+The index refers to the index number shown in the displayed expense list.
+
+
+* The index must be a **positive integer** 1, 2, 3, …​
+
+Examples:
+* `view 1` views the `amount, category, date and description` of the 1st expense displayed in the list.
+
+### Add a description to an expense : `addDes`
+
+Add a description to an existing expense in the finance book.
+
+Format: `addDes INDEX d/DESCRIPTION`
+
+* Add description field to the expense at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed expense list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing description will be overwrote to the new description.
+
+Examples:
+`addDes 3 d/movies` Add the description field `movies` to the 3rd expense.
+
+### Delete description of an expense: `deleteDes`
+
+Delete the description field of an existing expense.
+
+Format: `deleteDes INDEX`
+
+* Deletes the description of the expense at the specified INDEX.
+* The `INDEX` refers to the index number shown in the expense list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+`deleteDes 1` Deletes the description field of the 1st expense.
+
+### Set Budget : `setBudget`
+
+Set the budget for UniSave. Default zero budget. Pop up for input when first launched.
+
+Format: `setBudget a/AMOUNT`
+
+Example:
+`setBudget a/1000`: Set the budget to 1000.
+
+### Show budget : `showBudget`
+
+Show the budget last set and the remaining budget in the UniSave.
+
+Format: `showBudget`
 
 ### Exiting the program : `exit`
 
@@ -148,9 +162,9 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the data `[Coming soon]`
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+UniSave data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -161,7 +175,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous UniSave home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,10 +183,12 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add** | `add a/AMOUNT c/CATEGORY d/DATE [D/DESCRIPTION]` <br> e.g., `add a/100 c/FOODBEVERAGE d/2020-09-12`
 **List** | `list`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**View** | `view INDEX`<br> e.g., `view 5`
+**Add Description** | `addDes INDEX d/DESCRIPTION`<br> e.g., `addDes 2 d/ENTERTAINMENT`
+**Delete Description** | `deleteDes INDEX`<br> e.g., `deleteDes 2`
+**Set Budget** | `setBudget a/AMOUNT`<br> e.g., `setBudget a/1000`
+**Show Budget** | `showBudget`
 **Help** | `help`

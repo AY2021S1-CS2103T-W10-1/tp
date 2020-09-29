@@ -236,13 +236,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* university international students who have the habit of bookkeeping
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+1. Problem: spendings in different currency not tracked by many existing apps -> track spending in different currency
+2. Problem: student exceeds budget, spending without control -> help you manage expense reasonably, save some money at the end of the month
+
 
 
 ### User stories
@@ -264,14 +267,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+
+**Use case: List all expenses**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all the expenses
+2.  AddressBook shows a list of expenses
+
+    Use case ends.
+    
+**Use case: List all expenses in a specific category**
+
+**MSS**
+1.  User requests to list all the expenses in a specific category
+2.  AddressBook shows a list of expenses in that category
+
+
+**Use case: Add a description to an expense**
+
+**MSS**
+
+1.  User requests to list expenses
+2.  UniSave shows a list of expenses
+3.  User requests to add a description to a specific expense in the list
+4.  UniSave adds the description input by user to the specific expense
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The input category is invalid or does not exist.
+
+    * 2a1. UniSave shows an error message.
+
+      Use case resumes at step 2.
+      
+      
+**Use case: Set a budget**
+
+**MSS**
+1.  User requests to set a budget
+2.  Unisave sets a budget
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The input budget is invalid.
+
+    * 2a1. UniSave shows an error message.
+
+      Use case resumes at step 2.
+      
+
+**Use case: Delete the current description of an expense**
+
+**MSS**
+
+1.  User requests to list expenses
+2.  UniSave shows a list of expenses
+3.  User requests to delete the description of a specific expense in the list
+4.  UniSave deletes the description of expense chosen by the user.
 
     Use case ends.
 
@@ -283,11 +341,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. UniSave shows an error message.
+
+      Use case resumes at step 2.
+      
+
+**Use case: View category labels**
+
+**MSS**
+
+1.  User requests to list available category labels
+2.  UniSave shows a list of existing category labels
+
+    Use case ends.
+
+**Use case: View expense**
+
+**MSS**
+
+1.  User requests to list all the expenses
+2.  UniSave shows a list of existing expenses
+
+    Use case ends.
+
+
+**Use case: Delete a current expense**
+
+**MSS**
+
+1.  User requests to list expenses
+2.  UniSave shows a list of existing expenses
+3.  User requests to delete a specific expenses in the list
+4.  UniSave deletes the requested expense chosen by the user.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. UniSave shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add expense with its category**
+
+**MSS**
+
+1.  User requests to list expenses
+2.  UniSave shows a list of existing expenses
+3.  User requests to add a category to a specific expense in the list
+4.  UniSave adds the category input by user to the specific expense
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. UniSave shows an error message.
+
+    Use case resume at Step 2
+
+
 
 ### Non-Functional Requirements
 
